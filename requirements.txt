@@ -1,0 +1,7 @@
+Install these in the Arduino Libraries Manager:
+
+Adafruit_BusIO
+Adafruit_GFX_Library
+Adafruit_TouchScreen
+SdFat
+
