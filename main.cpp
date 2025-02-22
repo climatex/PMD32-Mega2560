@@ -128,6 +128,17 @@ bool DetectCard(bool& firstRun)
     if (firstRun)
     {
       fsAutoLoadImagesFromEEPROM(); // if built with, see config.h
+      
+      // if nothing was mounted to A: on first run, check and autoload system.p32
+      const char systemImage[] = "/system.p32";
+      
+      if (!fsIsDriveMounted(0) && sd.exists(systemImage))
+      {
+        BYTE dummyResult;
+        strcpy(fsGetImagePath(0), systemImage);
+        fsMount(0, dummyResult, true); // readonly
+      }
+      
       firstRun = false;
     }
 
